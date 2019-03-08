@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.organOld.dao.repository.ProductBookDao">
+
+    <resultMap id="productBook" type="com.organOld.dao.entity.product.ProductBook">
+        <id property="id" column="id" />
+        <result property="productId" column="product_id" />
+        <result property="organId" column="organ_id" />
+        <result property="time" column="time" />
+        <result property="status" column="status" />
+    </resultMap>
+
+
+    <select id="getByPage" parameterType="com.organOld.dao.util.Page" resultMap="productBook">
+        SELECT pb.id,pb.product_id,pb.time,pb.status,pb.organ_id
+        FROM product_book pb
+        WHERE pb.oldman_id=#{entity.oldmanId}
+        <if test="sortType!=null and sortType!=''">
+            ORDER BY pb.time
+        </if>
+        <if test="sort!=null and sort!=''">
+            asc
+        </if>
+        <if test="length!=null and length!=0">
+            limit #{start},#{length}
+        </if>
+    </select>
+
+    <select id="getSizeByPage" parameterType="com.organOld.dao.util.Page" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM product_book
+        WHERE oldman_id=#{entity.oldmanId}
+    </select>
+
+    <update id="updateProp">
+        UPDATE product_book
+        SET ${prop}=#{value}
+        WHERE id=#{id}
+    </update>
+
+    <insert id="saveAll" parameterType="com.organOld.dao.entity.product.ProductBook">
+        INSERT into product_book(oldman_id,organ_id,`product_id`,status)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.oldmanId},#{item.organId},#{item.productId},#{item.status})
+        </foreach>
+
+    </insert>
+</mapper>
