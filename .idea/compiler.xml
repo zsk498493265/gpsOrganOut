@@ -6,12 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="organOld-dao" />
+        <module name="organOld-outService" />
+        <module name="organOld-web" />
         <module name="organOlddao" />
         <module name="organOldoutService" />
         <module name="organOldweb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="organOld" target="1.8" />
+      <module name="organOld-dao" target="1.8" />
+      <module name="organOld-outService" target="1.8" />
+      <module name="organOld-web" target="1.8" />
       <module name="organOlddao" target="1.8" />
       <module name="organOldOut" target="1.8" />
       <module name="organOldoutService" target="1.8" />

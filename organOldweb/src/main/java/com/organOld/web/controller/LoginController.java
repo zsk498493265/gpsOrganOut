@@ -2,6 +2,7 @@ package com.organOld.web.controller;
 
 import com.organOld.oService.contract.CardRequest;
 import com.organOld.oService.contract.Conse;
+import com.organOld.oService.contract.Coordinate;
 import com.organOld.oService.exception.ServiceException;
 import com.organOld.oService.service.ComService;
 import com.organOld.oService.service.OldsUserService;
@@ -45,5 +46,10 @@ public class LoginController {
         else
             return new Conse(true,"您已经登录");
     }
+//    @ResponseBody
+//    @RequestMapping(value = "workerLogin" , method = RequestMethod.GET)
+//    public Conse LoginWorker(Coordinate coordinate){
+//
+//    }
 
 }

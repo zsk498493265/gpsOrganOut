@@ -1,9 +1,12 @@
 package com.organOld.oService.service.impl;
 
 import com.organOld.dao.entity.Card;
+import com.organOld.dao.entity.Coordinate;
 import com.organOld.dao.entity.oldman.Oldman;
+import com.organOld.dao.entity.record.Worker;
 import com.organOld.dao.repository.CardDao;
 import com.organOld.dao.repository.OldmanDao;
+import com.organOld.dao.repository.out.CoordinateDao;
 import com.organOld.dao.repository.out.oldsUserDao;
 import com.organOld.oService.constant.Constant;
 import com.organOld.oService.contract.CardRequest;
@@ -37,6 +40,8 @@ public class OldsUserServiceImpl implements OldsUserService {
     TokenMgrService tokenMgrService;
     @Autowired
     OldmanDao oldmanDao;
+    @Autowired
+    CoordinateDao coordinateDao;
 
     /**
      * 获取账户信息
@@ -101,20 +106,21 @@ public class OldsUserServiceImpl implements OldsUserService {
 
     @Override
     public Conse checkLogin(CardRequest cardRequest){
-        Card card = cardDao.getByCid(cardRequest.getUsername());
-        if(card == null)
+        //Card card = cardDao.getByCid(cardRequest.getUsername());
+        Worker worker = coordinateDao.getCoById(cardRequest.getUsername());
+        if(worker == null)
             throw new ServiceException("账号不存在");
-        else{
-            Oldman oldman = oldmanDao.getById(card.getOldmanId());
-            if(oldman.getDisable() == 1)
-                throw new ServiceException("该老人已从数据库中删除");
-        }
-        if(cardRequest.getPassword().equals(card.getPassword())){
-           String token = tokenMgrService.createJWT(card.getUsername(), Constant.JWT_ISS,tokenMgrService.generalSubject(card),Constant.JWT_TTL);
-//           if(Cache.checkCacheName(card.getUsername()+""))
-//               throw new ServiceException("该账号已登录！");
-           Cache.put(token,card,Cache.CACHE_HOLD_TIME_24H);
-           return new Conse(true,token);
+//        else{
+//            Oldman oldman = oldmanDao.getById(card.getOldmanId());
+//            if(oldman.getDisable() == 1)
+//                throw new ServiceException("该老人已从数据库中删除");
+//        }
+        if(cardRequest.getPassword().equals(worker.getPassword())){
+//           String token = tokenMgrService.createJWT(card.getUsername(), Constant.JWT_ISS,tokenMgrService.generalSubject(card),Constant.JWT_TTL);
+////           if(Cache.checkCacheName(card.getUsername()+""))
+////               throw new ServiceException("该账号已登录！");
+//           Cache.put(token,card,Cache.CACHE_HOLD_TIME_24H);
+           return new Conse(true);
 
         }
 

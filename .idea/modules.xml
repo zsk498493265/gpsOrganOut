@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/organOld.iml" filepath="$PROJECT_DIR$/organOld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/organOlddao/organOld-dao.iml" filepath="$PROJECT_DIR$/organOlddao/organOld-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/organOldoutService/organOld-outService.iml" filepath="$PROJECT_DIR$/organOldoutService/organOld-outService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/organOldweb/organOld-web.iml" filepath="$PROJECT_DIR$/organOldweb/organOld-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/organOldOut.iml" filepath="$PROJECT_DIR$/organOldOut.iml" />
       <module fileurl="file://$PROJECT_DIR$/../organOldOut/organOlddao/organOlddao.iml" filepath="$PROJECT_DIR$/../organOldOut/organOlddao/organOlddao.iml" />
       <module fileurl="file://$PROJECT_DIR$/../organOldOut/organOldoutService/organOldoutService.iml" filepath="$PROJECT_DIR$/../organOldOut/organOldoutService/organOldoutService.iml" />
